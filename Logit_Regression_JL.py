@@ -2,7 +2,7 @@ from sklearn.linear_model import LogisticRegression
 
 # TRANSFORMANDO V.A CATEGÓRICA 
 
-replace = {'MAU PAGADOR': 1, 'BOM PAGADOR': 0}
+replace = {'MAU PAGADOR': 0, 'BOM PAGADOR': 1}
 df['TARGET'] = df['TARGET'].map(replace)
 
 # TRATANDO DF PARA CONSTRUÇÃO DO MODELO
