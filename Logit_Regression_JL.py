@@ -24,7 +24,7 @@ y_test = df_teste.iloc[:,0]
 logit_regression = linear_model.LogisticRegression()
 logit_regression.fit(Xs_trein,y_trein)
 
-y_predict = np.round(logit_regression.predict(Xs_test),0)
+y_predict = logit_regression.predict(Xs_test)
 y_predict
 
 # MATRIZ DE CONFUZÃO
