@@ -31,9 +31,10 @@ y_predict
 cm = metrics.confusion_matrix(y_test, y_predict, labels=[True, False])/len(y_test)
 Matrix_confusion = pandas.DataFrame(cm,index = ['False','True'],columns = ['False','True'])
 
-accuracy = metrics.accuracy_score(y_test,y_predict)
+
 
 # ESTIMADORES DE QUALIDADE
+accuracy = metrics.accuracy_score(y_test,y_predict)
 print('  Matrix Confusion\n',Matrix_confusion)
 print('\n Accuracy: ',accuracy)
 
