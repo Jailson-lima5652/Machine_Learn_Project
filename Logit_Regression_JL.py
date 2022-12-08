@@ -2,15 +2,16 @@ from sklearn.datasets import load_iris
 from sklearn.linear_model import LogisticRegression
 
 # TRANSFORMANDO V.A CATEGÓRICA 
-target = pandas.get_dummies(df[['TARGET']])
+
+replace = {'MAU PAGADOR': 1, 'BOM PAGADOR': 0}
+df['TARGET'] = df['TARGET'].map(replace)
 
 # TRATANDO DF PARA CONSTRUÇÃO DO MODELO
 cols = [x for x in df.columns if df.dtypes[x]==float or df.dtypes[x]==int]
-df2 = pandas.concat([target,df[cols]], axis = 1)
+df2 = df[cols]
+df2.drop([df2.columns[0]],axis = 1, inplace = True)
 
-df2.drop([df2.columns[0],df2.columns[2]],axis = 1, inplace = True)
-
-# PEGANDO VARIÁVEIS PARA MODELO
+# EXTRAINDO AMOSTRAS VARIÁVEIS PARA MODELO
 df_treino = df2.sample(250000)
 df_teste = df2.sample(125000)
 
@@ -32,8 +33,12 @@ cm = metrics.confusion_matrix(y_test, y_predict, labels=[True, False])/len(y_tes
 Matrix_confusion = pandas.DataFrame(cm,index = ['False','True'],columns = ['False','True'])
 
 accuracy = metrics.accuracy_score(y_test,y_predict)
-r2 = metrics.r2_score(y_test,y_predict)
-perda_log = metrics.log_loss(y_test,y_predict)
+
+# ESTIMADORES DE QUALIDADE
 print('  Matrix Confusion\n',Matrix_confusion)
 print('\n Accuracy: ',accuracy)
-print('R² : ',round(r2,4))
+
+# Estimativas de probabilidade
+pandas.DataFrame(prob.reshape(-1,1))[0]
+
+
