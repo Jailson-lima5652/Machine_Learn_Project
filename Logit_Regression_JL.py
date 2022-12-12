@@ -39,6 +39,7 @@ print('  Matrix Confusion\n',Matrix_confusion)
 print('\n Accuracy: ',accuracy)
 
 # Estimativas de probabilidade
+prob = logit_regression.predict_proba(Xs_trein)
 pandas.DataFrame(prob.reshape(-1,1))[0]
 
 
