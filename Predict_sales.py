@@ -11,7 +11,7 @@ import scipy
 
 import matplotlib.pyplot as plt
 
-zip = ZipFile("/content/drive/MyDrive/Desafios Kaggle/MachineLearning/store-sales-time-series-forecasting.zip");zip.namelist()
+zip = ZipFile("/content/store-sales-time-series-forecasting.zip");zip.namelist()
 dir = zip.namelist()
 data_sets = {dir[:-4]: pd.read_csv(zip.open(dir),
                          encoding = ('ISO-8859-1'),
